@@ -1,0 +1,25 @@
+su
+grub-mkconfig -o ./grub.cfg
+cp /boot/grub/grub.cfg ./grub.cfg.copy
+cp ./grub.cfg /boot/grub/grub.cfg
+su jf
+
+diff grub.cfg.copy grub.cfg
+
+180a181,192
+> menuentry 'Windows 7 (loader) (on /dev/sda1)' --class windows --class os $menuentry_id_option 'osprober-chain-7E4E09984E094A7B' {
+> 	insmod part_msdos
+> 	insmod ntfs
+> 	set root='hd0,msdos1'
+> 	if [ x$feature_platform_search_hint = xy ]; then
+> 	  search --no-floppy --fs-uuid --set=root --hint-bios=hd0,msdos1 --hint-efi=hd0,msdos1 --hint-baremetal=ahci0,msdos1  7E4E09984E094A7B
+> 	else
+> 	  search --no-floppy --fs-uuid --set=root 7E4E09984E094A7B
+> 	fi
+> 	parttool ${root} hidden-
+> 	chainloader +1
+> }
+184,186d195
+< menuentry 'System setup' $menuentry_id_option 'uefi-firmware' {
+< 	fwsetup
+< }
