@@ -1,0 +1,6 @@
+su
+apt-get install ibus-pinyin
+su jf
+
+ibus-setup
+
