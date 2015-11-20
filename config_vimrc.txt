@@ -1,0 +1,58 @@
+# upder /home/jf/
+vim .vimrc
+#input vimrc
+:wq
+
+
+# vimrc
+
+
+set nocompatible
+
+set number
+set tabstop =4
+set shiftwidth =4
+set softtabstop =4
+set expandtab
+set autoindent
+set cindent
+""set ignorecase
+
+""set encoding =uft-8 ""disp encoding.
+set fileencodings =utf-8,cp936 ""auto check encoding.
+set fileencoding =utf-8 ""new & create file use this encoding.
+
+set nobackup
+""set backupext =.bak
+""set patchmode =.orig
+
+""cmd autocomplete.
+set wildmenu
+""set fileformats=dos
+
+filetype plugin on
+filetype indent on
+
+""share vim's + clipboard with windows's clipboard.
+""no this line, use "+y "+p to copy and paste with windows's clipboard.
+set clipboard+=unnamed
+
+" Set to auto read when a file is changed from the outside.
+set autoread
+
+syntax enable
+
+set foldcolumn =1
+set foldmethod =indent
+set foldlevelstart=99
+
+""set laststatus=2
+""set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+
+set guifont=Bitstream_Vera_Sans_Mono:h10:cANSI
+""set gfw=YouYuan:h16:cGB2312
+
+execute "cd" substitute(expand("%:h"),' ','\\ ','g')
+
+autocmd Syntax python map <F5> <Esc>:!python %<CR>
+autocmd Syntax python imap <F5> <Esc>:!python %<CR>

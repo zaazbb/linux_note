@@ -1,0 +1,8 @@
+su 
+# input root password.
+apt-get install sudo
+vi /etc/sudoers
+#add line.>
+    jf  ALL=(ALL) ALL
+wq!
+su jf

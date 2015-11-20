@@ -1,0 +1,8 @@
+kill python process.
+
+ps -ef | grep python | grep -v grep | awk '{print $2}' | xargs sudo kill -9\n
+
+
+kill python process except getip and webserver.
+
+ps -ef | grep python | grep -v grep | grep -v getip | grep -v http.server | awk '{print $2}' | xargs sudo kill -9\n

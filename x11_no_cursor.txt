@@ -1,0 +1,5 @@
+		 sudo vim /etc/X11/xinit/xserverrc
+
+		 exec /usr/bin/X -nolisten tcp "$@"
+     change to
+     	 exec /usr/bin/X -nocursor -nolisten tcp "$@"
