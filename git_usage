@@ -1,0 +1,19 @@
+git init
+
+git add readme.txt
+git commit -m "wrote a readme file"
+
+git status
+
+# show commit log.
+git diff readme.txt
+# -- means work file(current local file).
+git diff HEAD -- readme.txt
+
+git log --pretty=oneline
+
+# HEAD HEAD^ HEAD^^ HEAD~100
+git reset --hard HEAD^
+
+# show command log.
+git reflog
