@@ -206,3 +206,11 @@ git clone git@server:/srv/sample.git
 # or
 # use Gitosis to manage pub key.
 # use Gitolite to control more.
+
+
+
+# add kdiff3 as git merge tool.
+git config --global merge.tool kdiff3
+git config --global mergetool.kdiff3.path "C:\Program Files\KDiff3\kdiff3.exe"
+# when merge
+git mergetool
