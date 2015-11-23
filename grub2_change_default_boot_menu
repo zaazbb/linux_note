@@ -1,0 +1,5 @@
+su
+vim /etc/default/grub
+#GRUB_DEFAULT=0 change to
+#GRUB_DEFAULT=2
+su jf
