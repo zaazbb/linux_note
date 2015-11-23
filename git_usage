@@ -10,6 +10,8 @@ git diff readme.txt
 # -- means work file(current local file).
 git diff HEAD -- readme.txt
 
+
+
 git log --pretty=oneline
 
 # HEAD HEAD^ HEAD^^ HEAD~100
@@ -17,3 +19,190 @@ git reset --hard HEAD^
 
 # show command log.
 git reflog
+
+# diff between workspace and repo.
+git diff HEAD -- readme.txt
+
+
+
+# discard workspace.
+git checkout -- readme.txt
+
+# move stage back to workspace.
+git reset HEAD readme.txt
+
+
+
+git rm test.txt
+git commit -m "remove test.txt."
+
+
+
+
+# create SSH key. in .ssh dir, create id_rsa and id_rsa.pub.
+sh-keygen -t rsa -C "youremail@example.com"
+
+# add romote repo.
+git remote add origin git@github.com:michaelliao/learngit.git
+# push master branch to remote, and connect it to locals.
+git push -u origin master
+# later push.
+git push origin master
+
+
+
+
+git clone git@github.com:michaelliao/gitskills.git
+git clone https://github.com/michaelliao/gitskills.git
+
+
+
+
+# create branch and switch to it.
+git checkout -b dev
+# same as
+git branch dev
+git checkout dev
+# create branch from remote, and switch to it.
+git checkout -b dev origin/dev
+
+# show branchs.
+git branch
+
+# switch back to master branch.
+git checkout master
+
+
+git merge dev
+# megre without fast forward.
+git merge --no-ff -m "merge with no-ff" dev
+
+
+# delete branch.
+git branch -d dev
+# delete unmegred branch.
+git branch -D feature-vulcan
+
+
+# show branch merge graph.
+git log --graph --pretty=oneline --abbrev-commit
+git log --graph
+
+# connect local branch to remot.
+git branch --set-upstream dev origin/dev
+
+
+
+# save workspace in local.
+git stash
+
+# show stash lish.
+git stash list
+
+# get stash and delete it.
+git stash pop
+# same as
+git stash apply stash@{0}
+git stash drop stash@{0}
+
+
+
+
+# show remote repo.
+git remote
+# show remote repo more info.
+git remote -v
+
+
+
+
+git tag v1.0
+git tag v0.9 6224937
+# add tag with log.
+git tag -a v0.1 -m "version 0.1 released." 3628164
+
+# signed a tag, must install gpg.
+git tag -s v0.2 -m "signed version 0.2 released" fec145a
+
+# show tag.
+git tag
+git show 0.9
+
+# delete tag.
+git tag -d v0.1
+
+# delte remote tag.
+# 1 delete local tag.
+git tag -d v0.9
+# 2 push to remote.
+git push origin :refs/tags/v0.9
+
+# push tag to remote.
+git push origin v1.0
+# push all tags to remote.
+git push origin --tags
+
+
+
+
+# .gitignore
+# ignore file.
+Thumbs.db
+Desktop.ini
+# ignore .ext file.
+*.so
+*.egg
+# ignore dir.
+dist
+build
+# commit .gitignore.
+
+
+
+
+git config --global user.name "your name"
+git config --global user.email "email@example.com"
+git config --global color.ui true
+
+git config --global alias.st status
+# git reset HEAD file -> git unstage file
+git config --global alias.unstage 'reset HEAD'
+# git last
+git config --global alias.last 'log -1'
+
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+# resp local config file.
+cat .git/config
+# user global config file.
+cat .gitconfig
+
+
+
+
+# make git server.
+sudo apt-get install git
+sudo adduser git
+# import user keys.
+# add id_rsa.pub to /home/git/.ssh/authorized_keys
+# one .pub one line.
+
+# repo is /srv/sample.git 
+# input cmd under /srv
+sudo git init --bare sample.git
+# change owner to git user.
+sudo chown -R git:git sample.git
+
+# disable git user use shell.
+# edit /etc/passwd
+# git:x:1001:1001:,,,:/home/git:/bin/bash
+# to
+# git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
+
+# clone on client pc.
+git clone git@server:/srv/sample.git
+
+
+# or
+# use Gitosis to manage pub key.
+# use Gitolite to control more.
