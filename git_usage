@@ -116,6 +116,7 @@ git remote -v
 
 
 
+# add tag.
 git tag v1.0
 git tag v0.9 6224937
 # add tag with log.
@@ -214,3 +215,9 @@ git config --global merge.tool kdiff3
 git config --global mergetool.kdiff3.path "C:\Program Files\KDiff3\kdiff3.exe"
 # when merge
 git mergetool
+
+# add kdiff3 as git diff tool.
+git config --global diff.tool kdiff3
+git config --global difftool.kdiff3.path "C:\Program Files\KDiff3\kdiff3.exe"
+# when diff
+git difftool
