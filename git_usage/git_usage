@@ -3,6 +3,10 @@ git init
 git add readme.txt
 git commit -m "wrote a readme file"
 
+# add all files.
+git add -A
+git commit -am "add & commit all files(not new file)"
+
 git status
 
 # show commit log.
