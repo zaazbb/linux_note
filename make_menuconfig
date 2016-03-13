@@ -1,0 +1,11 @@
+jf@debian:~/work/u-boot-2016.01$ make menuconfig
+  HOSTCC  scripts/kconfig/mconf.o
+In file included from scripts/kconfig/mconf.c:23:0:
+scripts/kconfig/lxdialog/dialog.h:38:20: fatal error: curses.h: No such file or directory
+ #include CURSES_LOC
+                    ^
+compilation terminated.
+scripts/Makefile.host:108: recipe for target 'scripts/kconfig/mconf.o' failed
+
+jf@debian:~/work/u-boot-2016.01$ sudo apt-get install libncurses5-dev
+
