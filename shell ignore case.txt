@@ -1,3 +1,0 @@
-for bash,  write to  /etc/inputrc  or  .inputrc:
-
-set completion-ignore-case on

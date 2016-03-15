@@ -1,0 +1,73 @@
+# https://www.itead.cc/blog/raspberry-pi-drives-itead-pn532-nfc-module-with-libnfc
+# http://www.eeboard.com/bbs/thread-33149-1-1.html
+# https://github.com/nfc-tools/libnfc
+# https://github.com/goodotcom/rfid-reader-http
+
+# Hardware connection 
+# According to the connection in the picture above, Itead PN532 Module is connected via the SPI bus with raspberry pi, therefore, operating mode of PN532 Module should be set to SPI mode, as shown below:
+#
+#    SET0-->L
+#    SET1-->H
+
+
+# Download and compress source code pack of libnfc 
+wget https://github.com/nfc-tools/libnfc/releases/download/libnfc-1.7.1/libnfc-1.7.1.tar.bz2
+tar -xf libnfc-1.7.1.tar.bz2 
+
+
+# Compile and install 
+cd libnfc-1.7.1
+./configure --prefix=/usr --sysconfdir=/etc --with-drivers=all
+make
+sudo make install
+
+
+# Modify configuration file
+cd /etc
+sudo mkdir nfc
+sudo nano /etc/nfc/libnfc.conf
+
+# Copy and paste the following contents to file /etc/nfc/libnfc.conf: 
+
+# Allow device auto-detection (default: true)
+# Note: if this auto-detection is disabled, user has to set manually a device
+# configuration using file or environment variable
+allow_autoscan = true
+
+# Allow intrusive auto-detection (default: false)
+# Warning: intrusive auto-detection can seriously disturb other devices
+# This option is not recommended, user should prefer to add manually his device.
+allow_intrusive_scan = false
+
+# Set log level (default: error)
+# Valid log levels are (in order of verbosity): 0 (none), 1 (error), 2 (info), 3 (debug)
+# Note: if you compiled with --enable-debug option, the default log level is "debug"
+log_level = 1
+
+# Manually set default device (no default)
+# To set a default device, you must set both name and connstring for your device
+# Note: if autoscan is enabled, default device will be the first device available in device list.
+device.name = "PN532_SPI"
+device.connstring = "pn532_spi:/dev/spidev0.1:500000"
+
+
+# test commands.
+nfc-list
+nfc-poll
+
+
+Appendix: related links
+
+A1. libnfc configuration method: http://nfc-tools.org/index.php?title=Libnfc:configuration
+
+A2. libnfc installation tutorial: http://nfc-tools.org/index.php?title=Libnfc
+
+A3. libnfc user API: http://nfc-tools.org/index.php?title=Libnfc:API
+
+A4. libnfc main page: http://nfc-tools.org/index.php?title=Main_Page
+
+A5. libnfc tutorial: http://nfc-tools.org/index.php?title=Category:Libnfc:Examples
+
+A6. Iteadstudio PN532 Module website: http://imall.iteadstudio.com/im130625002.html
+
+A7. Disable R-Pi/RASPBIAN serial console for using UART0: http://learn.adafruit.com/adafruit-nfc-rfid-on-raspberry-pi/freeing-uart-on-the-pi
