@@ -9,6 +9,8 @@
 #    SET0-->L
 #    SET1-->H
 
+sudo apt-get update
+sudo apt-get install libusb-dev libpcsclite-dev
 
 # Download and compress source code pack of libnfc 
 wget https://github.com/nfc-tools/libnfc/releases/download/libnfc-1.7.1/libnfc-1.7.1.tar.bz2

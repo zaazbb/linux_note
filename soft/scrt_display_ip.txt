@@ -1,0 +1,4 @@
+Session Options>Terminal>Emulation>Advanced
+
+# selected.
+Ignore window title change requests.
