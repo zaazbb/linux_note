@@ -1,0 +1,54 @@
+
+# http://wiringpi.com
+
+git clone git://git.drogon.net/wiringPi
+
+cd wiringPi
+git pull origin
+
+#cd wiringPi
+#./build
+
+#./build uninstall
+
+
+
+
+sudo apt-get install python-dev python-setuptools swig
+
+
+git clone --recursive https://github.com/WiringPi/WiringPi-Python.git
+
+# if can't clone wiringpi.
+cp wiringPi WiringPi-Python/WiringPi
+
+
+cd WiringPi-Python
+
+cd WiringPi
+sudo ./build
+
+swig2.0 -python wiringpi.i or swig3.0 -thread -python wiringpi.i
+
+
+cd ..
+
+sudo python3 setup.py install
+
+
+
+
+# wiringpi-python spi example.
+
+from wiringpi import *
+
+def si443x_readRegister(regAddr):
+    data_buffer = bytes([regAddr, 0xFF])
+    wiringPiSPIDataRW(0, data_buffer)
+    return data_buffer[1]
+
+
+def si443x_writeRegister(regAddr, value):
+    data_buffer = bytes([regAddr | 0x80, value])
+    wiringPiSPIDataRW(0, data_buffer)
+    return
